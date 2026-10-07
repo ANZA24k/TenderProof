@@ -39,7 +39,7 @@ def evaluation(statuses, citations=True, citation_name="proposal-a.md"):
                 "status": status,
                 "score_bps": {"PASS": 10000, "PARTIAL": 5000, "FAIL": 0, "INCONCLUSIVE": 0}[status],
                 "finding": f"Locked fixture assessment for {criterion['id']}.",
-                "evidence_urls": [BASE + "proposal-a.md"] if citations else [],
+                "evidence_urls": [BASE + citation_name] if citations else [],
             }
         )
     return {"criteria": result, "summary": "The result is grounded in the exact locked proposal bytes and rubric."}
