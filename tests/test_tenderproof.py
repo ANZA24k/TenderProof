@@ -229,6 +229,11 @@ def test_challenge_is_bounded_append_only_and_requires_new_evidence(env):
     mock_resource(vm, "proposal-a-evidence.md", A_EVIDENCE)
     contract.challenge_proposal(tender_id, proposal_id, "The evidence adds the missing deployment notes.", json.dumps([item]))
     assert proposal_state(env, tender_id, proposal_id)["status"] == "RECHECK_REQUESTED"
+    vm.mock_llm(
+        r".*You are an independent evaluator for the locked TenderProof/1 rubric.*",
+        json.dumps(evaluation(["PASS", "PASS", "PASS", "PASS", "PASS"])),
+    )
+    contract.evaluate_proposal(tender_id, proposal_id)
     with pytest.raises(Exception, match="quota"):
         contract.challenge_proposal(tender_id, proposal_id, "Second challenge", json.dumps([fp("proposal-a-evidence-2.md", A_EVIDENCE)]))
 
@@ -301,7 +306,7 @@ def test_finalization_selects_the_best_and_prevents_replay(env):
     vm.warp(datetime.fromtimestamp(NOW + 181, timezone.utc).isoformat())
     result = json.loads(contract.finalize_tender(tender_id))
     assert result["status"] == "AWARDED"
-    assert result["winner"] == str(applicant)
+    assert result["winner"].lower() == "0x" + applicant.hex()
     assert result["award_transfer_emitted"] is True
     assert json.loads(contract.get_accounting())["escrow"] == 0
     with pytest.raises(Exception, match="not open"):
