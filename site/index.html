@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101214">
+  <meta name="description" content="TenderProof — evidence-bound tender evaluation through GenLayer consensus.">
+  <title>TenderProof · Evidence-bound evaluation</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="brand-mark">TP</span><span>TenderProof</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#pilot">Pilot</a>
+      <a href="#rubric">Rubric</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/ANZA24k/TenderProof" rel="noreferrer">Source</a>
+    </nav>
+    <span class="network-pill"><span class="status-dot"></span>Studionet prototype</span>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="eyebrow">GENLAYER INTELLIGENT CONTRACT · TENDERPROOF/1</div>
+      <h1>Procurement evidence,<br><em>resolved by consensus.</em></h1>
+      <p class="hero-copy">A transparent commit → reveal → review protocol for tenders whose requirements need semantic judgment, exact public evidence, and deterministic settlement.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#pilot">Inspect the pilot</a>
+        <a class="button button-quiet" href="https://github.com/ANZA24k/TenderProof" rel="noreferrer">Read the contract</a>
+      </div>
+      <div class="hero-note"><strong>Honest status:</strong> the site never invents live chain data. Deployment and pilot fields remain unconfigured until genuine Studio receipts are recorded.</div>
+    </section>
+
+    <section class="status-panel shell" aria-labelledby="status-title">
+      <div class="section-kicker" id="status-title">Live deployment status</div>
+      <div class="status-grid">
+        <div><span class="label">Network</span><strong data-network>Studionet</strong></div>
+        <div><span class="label">Chain ID</span><strong data-chain-id>61999</strong></div>
+        <div><span class="label">Contract</span><strong class="mono" data-contract>Not deployed</strong></div>
+        <div><span class="label">Pilot</span><strong data-pilot>Not run</strong></div>
+      </div>
+      <p class="status-message" data-live-message>Checking the repository’s deployment record…</p>
+    </section>
+
+    <section class="shell flow-section" aria-labelledby="flow-title">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Protocol flow</div>
+          <h2 id="flow-title">Four gates. One deterministic decision.</h2>
+        </div>
+        <p>Semantic review is bounded by evidence and cannot directly choose the winner.</p>
+      </div>
+      <div class="flow-grid">
+        <article class="flow-card"><span class="step">01</span><h3>Commit</h3><p>Each wallet locks one lowercase SHA-256 digest of the exact proposal bytes before the deadline.</p><span class="card-tag">DETERMINISTIC</span></article>
+        <article class="flow-card"><span class="step">02</span><h3>Reveal</h3><p>The applicant publishes a commit-pinned raw URL. GenLayer independently hashes the retrieved bytes and evidence.</p><span class="card-tag">BYTE-AUTHENTICATED</span></article>
+        <article class="flow-card"><span class="step">03</span><h3>Review</h3><p>Leader and validator fetch the same locked material and assess every rubric criterion independently.</p><span class="card-tag accent">CONSENSUS</span></article>
+        <article class="flow-card"><span class="step">04</span><h3>Settle</h3><p>Fixed score buckets, mandatory rules, tie breaking, and one award/refund path run in contract code.</p><span class="card-tag">STATE MACHINE</span></article>
+      </div>
+    </section>
+
+    <section class="shell two-column" id="pilot">
+      <div>
+        <div class="section-kicker">Synthetic public pilot</div>
+        <h2>Incident-status dashboard tender</h2>
+        <p class="muted">A deliberately small software-services tender shows the protocol without impersonating a real bidder or company.</p>
+        <div class="fixture-callout">
+          <span class="fixture-label">FIXTURE ONLY</span>
+          <p>Proposal A describes a responsive, accessible, tested, documented dashboard. Proposal B intentionally fails the mandatory accessibility criterion.</p>
+        </div>
+        <div class="meta-list">
+          <div><span>Commitment phase</span><strong data-phase-commit>Not run</strong></div>
+          <div><span>Reveal phase</span><strong data-phase-reveal>Not run</strong></div>
+          <div><span>Review phase</span><strong data-phase-review>Not run</strong></div>
+          <div><span>Final outcome</span><strong data-outcome>Not observed</strong></div>
+        </div>
+      </div>
+      <div class="evidence-card">
+        <div class="card-topline"><span>PUBLIC FIXTURES</span><span class="hash-icon">#</span></div>
+        <h3>Exact bytes, not screenshots</h3>
+        <p>Reveals use immutable GitHub raw URLs pinned to a 40-character source commit. The contract hashes the retrieved bytes before a proposal can enter review.</p>
+        <a class="text-link" href="https://github.com/ANZA24k/TenderProof/tree/main/evidence/fixtures" rel="noreferrer">Open fixture directory <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="shell" id="rubric" aria-labelledby="rubric-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Locked rubric</div><h2 id="rubric-title">The contract scores criteria, not vibes.</h2></div>
+        <p>Weights total 10,000 basis points. PASS, PARTIAL, and FAIL map to 100%, 50%, and 0%.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Criterion</th><th>Requirement</th><th>Weight</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td><span class="criterion-id">C1</span> Technical compliance</td><td>Responsive implementation consumes the locked data format.</td><td>3,000 bps</td><td><span class="mandatory">MANDATORY</span></td></tr>
+            <tr><td><span class="criterion-id">C2</span> Delivery plan</td><td>Phases, ownership, and a realistic sequence.</td><td>2,000 bps</td><td><span class="mandatory">MANDATORY</span></td></tr>
+            <tr><td><span class="criterion-id">C3</span> Accessibility</td><td>Keyboard, semantic HTML, focus, and contrast notes.</td><td>2,000 bps</td><td><span class="mandatory">MANDATORY</span></td></tr>
+            <tr><td><span class="criterion-id">C4</span> Testing + docs</td><td>Testing approach and reproducible setup documentation.</td><td>1,500 bps</td><td>Optional</td></tr>
+            <tr><td><span class="criterion-id">C5</span> Maintenance</td><td>Monitoring, maintenance, and incident response.</td><td>1,500 bps</td><td>Optional</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="shell" aria-labelledby="proposals-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Proposal register</div><h2 id="proposals-title">Two bounded synthetic submissions.</h2></div>
+        <p>These are evidence fixtures, not live applicants.</p>
+      </div>
+      <div class="proposal-grid">
+        <article class="proposal-card good">
+          <div class="proposal-head"><span class="proposal-code">A</span><div><h3>Status Atlas</h3><span class="proposal-status">DESIGNED TO QUALIFY</span></div></div>
+          <p>Responsive architecture, explicit accessibility practice, reproducible tests, deployment notes, and maintenance ownership.</p>
+          <div class="proposal-score"><span>Expected fixture profile</span><strong>5 × PASS</strong></div>
+          <a class="text-link" href="https://github.com/ANZA24k/TenderProof/blob/main/evidence/fixtures/proposal-a.md" rel="noreferrer">Read Proposal A <span>↗</span></a>
+        </article>
+        <article class="proposal-card warn">
+          <div class="proposal-head"><span class="proposal-code">B</span><div><h3>Status Cards</h3><span class="proposal-status">DESIGNED TO DISQUALIFY</span></div></div>
+          <p>Happy-path desktop prototype with no concrete semantic, keyboard, focus, or contrast requirements.</p>
+          <div class="proposal-score"><span>Expected fixture profile</span><strong>C3 · FAIL</strong></div>
+          <a class="text-link" href="https://github.com/ANZA24k/TenderProof/blob/main/evidence/fixtures/proposal-b.md" rel="noreferrer">Read Proposal B <span>↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell architecture-section" id="architecture" aria-labelledby="architecture-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Architecture</div><h2 id="architecture-title">Deterministic spine, consensus edge.</h2></div>
+        <p>Only normalized consensus output crosses into state-changing code.</p>
+      </div>
+      <div class="architecture-grid">
+        <div class="arch-panel">
+          <span class="panel-label">CONTRACT CONTROLS</span>
+          <ul><li>Identity + authorization</li><li>Deadlines + state machine</li><li>Hashes + evidence bounds</li><li>Weights + score arithmetic</li><li>Ranking + settlement</li></ul>
+        </div>
+        <div class="arch-connector"><span>normalized<br>result</span></div>
+        <div class="arch-panel consensus">
+          <span class="panel-label">VALIDATORS RE-CHECK</span>
+          <ul><li>Fetch exact proposal bytes</li><li>Fetch locked evidence</li><li>Ignore embedded instructions</li><li>Assess every criterion</li><li>Agree on material buckets</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell limitations">
+      <div class="limitation-mark">!</div>
+      <div><div class="section-kicker">Read before relying on it</div><h2>Transparent about the edges.</h2><p>TenderProof is not encrypted sealed bidding, legal procurement, identity verification, or production escrow. Commitments protect content only while it remains private. Studionet GEN is test value. Network availability and validator disagreement can leave a proposal unresolved.</p></div>
+      <a class="button button-quiet" href="https://github.com/ANZA24k/TenderProof/blob/main/docs/SECURITY.md" rel="noreferrer">Security notes</a>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span>TenderProof / protocol evidence</span>
+    <span><a href="https://docs.genlayer.com/" rel="noreferrer">GenLayer docs ↗</a> · <a href="https://github.com/ANZA24k/TenderProof" rel="noreferrer">GitHub ↗</a></span>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

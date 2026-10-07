@@ -1,0 +1,23 @@
+{
+  "status": "not-deployed",
+  "network": "studionet",
+  "chainId": 61999,
+  "contractAddress": null,
+  "deploymentTx": null,
+  "sourceCommit": null,
+  "sourceSha256": null,
+  "website": null,
+  "pilotTenderId": null,
+  "proposalIds": [],
+  "transactions": {
+    "tenderCreation": null,
+    "commitments": [],
+    "reveals": [],
+    "evaluations": [],
+    "challenges": [],
+    "finalization": null,
+    "awardOrRefund": null
+  },
+  "observedFinalState": null,
+  "notes": "Intentionally unpopulated until a genuine Studionet deployment and pilot are executed."
+}

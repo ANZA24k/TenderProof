@@ -1,0 +1,29 @@
+{
+  "status": "not-run",
+  "network": "studionet",
+  "chainId": 61999,
+  "deployment": {
+    "contractAddress": null,
+    "transaction": null,
+    "sourceCommit": null
+  },
+  "roles": {
+    "sponsor": null,
+    "proposalAApplicant": null,
+    "proposalBApplicant": null
+  },
+  "tender": {
+    "id": null,
+    "creationTransaction": null,
+    "commitDeadline": null,
+    "revealDeadline": null,
+    "reviewDeadline": null
+  },
+  "proposals": [],
+  "evaluations": [],
+  "challenges": [],
+  "finalization": null,
+  "awardOrRefund": null,
+  "observedFinalState": null,
+  "notes": "Null values are intentional. No public pilot claim is made until receipts and finalized state are captured."
+}

@@ -1,0 +1,12 @@
+{
+  "status": "not-deployed",
+  "network": "studionet",
+  "chainId": 61999,
+  "contractAddress": null,
+  "deploymentTx": null,
+  "sourceCommit": null,
+  "website": null,
+  "pilotTenderId": null,
+  "observedFinalState": null,
+  "notes": "Live data is not configured."
+}
