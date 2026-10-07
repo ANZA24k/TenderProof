@@ -30,7 +30,7 @@ def fp(name, body, label="supporting evidence"):
     return {"url": BASE + name, "sha256": sha(body), "bytes": len(body), "label": label}
 
 
-def evaluation(statuses, citations=True):
+def evaluation(statuses, citations=True, citation_name="proposal-a.md"):
     result = []
     for criterion, status in zip(CRITERIA, statuses):
         result.append(
@@ -280,7 +280,7 @@ def test_deterministic_score_and_mandatory_disqualification(env):
     contract.evaluate_proposal(tender_id, a)
     vm.mock_llm(
         r".*proposal-b\.md.*",
-        json.dumps(evaluation(["PASS", "PASS", "FAIL", "PASS", "PARTIAL"])),
+        json.dumps(evaluation(["PASS", "PASS", "FAIL", "PASS", "PARTIAL"], citation_name="proposal-b.md")),
     )
     contract.evaluate_proposal(tender_id, b)
     assert proposal_state(env, tender_id, a)["score_bps"] == 10000

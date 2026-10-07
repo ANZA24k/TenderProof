@@ -271,7 +271,7 @@ def evaluate_documents(
                     return {"ok": False, "error": "locked evidence changed"}
                 documents.append({"url": ref["url"], "text": body.decode("utf-8")})
             except Exception:
-                return {"ok": False, "error": "locked evidence unavailable or invalid UTF-8"})
+                return {"ok": False, "error": "locked evidence unavailable or invalid UTF-8"}
 
         prompt = (
             "You are an independent evaluator for the locked TenderProof/1 rubric. "
