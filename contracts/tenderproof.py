@@ -74,45 +74,48 @@ def validate_url(value: Any) -> str:
     return url
 
 
-def validate_fingerprints(raw: str, limit: int, allow_empty: bool = True) -> list:
+def validate_fingerprints(raw: str, limit: int, allow_empty: bool = True) -> list[dict[str, Any]]:
     require(type(raw) is str and len(raw) <= 8_000, "evidence JSON too large")
     try:
-        value = json.loads(raw)
+        value = cast(list[Any], json.loads(raw))
     except Exception:
         raise gl.vm.UserError("invalid evidence JSON")
     require(type(value) is list, "evidence must be a list")
     require((allow_empty and len(value) <= limit) or (not allow_empty and 1 <= len(value) <= limit), "evidence count")
-    result = []
-    urls = set()
-    hashes = set()
+    result: list[dict[str, Any]] = []
+    urls: set[str] = set()
+    hashes: set[str] = set()
     total_bytes = 0
-    for item in value:
+    for raw_item in value:
+        item = cast(dict[str, Any], raw_item)
         require(type(item) is dict and set(item) == {"url", "sha256", "bytes", "label"}, "invalid evidence fields")
         url = validate_url(item["url"])
         sha256 = validate_hash(item["sha256"])
         require(type(item["bytes"]) is int and not isinstance(item["bytes"], bool), "invalid evidence byte length")
-        require(1 <= item["bytes"] <= MAX_EVIDENCE_BYTES, "evidence item too large")
+        bytes_count = cast(int, item["bytes"])
+        require(1 <= bytes_count <= MAX_EVIDENCE_BYTES, "evidence item too large")
         label = validate_text(item["label"], 1, MAX_LABEL, "invalid evidence label")
         require(url not in urls and sha256 not in hashes, "duplicate evidence")
         urls.add(url)
         hashes.add(sha256)
-        total_bytes += item["bytes"]
-        result.append({"url": url, "sha256": sha256, "bytes": item["bytes"], "label": label})
+        total_bytes += bytes_count
+        result.append({"url": url, "sha256": sha256, "bytes": bytes_count, "label": label})
     require(total_bytes <= MAX_TOTAL_EVIDENCE_BYTES, "evidence byte budget exceeded")
     return result
 
 
-def validate_criteria(raw: str) -> list:
+def validate_criteria(raw: str) -> list[dict[str, Any]]:
     require(type(raw) is str and len(raw) <= 12_000, "criteria JSON too large")
     try:
-        value = json.loads(raw)
+        value = cast(list[Any], json.loads(raw))
     except Exception:
         raise gl.vm.UserError("invalid criteria JSON")
     require(type(value) is list and 1 <= len(value) <= MAX_CRITERIA, "criterion count")
-    result = []
-    ids = set()
+    result: list[dict[str, Any]] = []
+    ids: set[str] = set()
     total = 0
-    for item in value:
+    for raw_item in value:
+        item = cast(dict[str, Any], raw_item)
         require(type(item) is dict and set(item) == {"id", "name", "requirement", "weight_bps", "mandatory"}, "invalid criterion fields")
         criterion_id = validate_text(item["id"], 2, 8, "invalid criterion id")
         require(re.fullmatch(r"C[0-9]{1,2}", criterion_id) is not None, "criterion id must be C1..C99")
@@ -120,16 +123,18 @@ def validate_criteria(raw: str) -> list:
         name = validate_text(item["name"], 1, 120, "invalid criterion name")
         requirement = validate_text(item["requirement"], 1, 1_600, "invalid criterion requirement")
         require(type(item["weight_bps"]) is int and not isinstance(item["weight_bps"], bool), "invalid criterion weight")
-        require(1 <= item["weight_bps"] <= WEIGHT_TOTAL, "invalid criterion weight")
+        weight_bps = cast(int, item["weight_bps"])
+        require(1 <= weight_bps <= WEIGHT_TOTAL, "invalid criterion weight")
         require(type(item["mandatory"]) is bool, "invalid mandatory flag")
+        mandatory = cast(bool, item["mandatory"])
         ids.add(criterion_id)
-        total += item["weight_bps"]
+        total += weight_bps
         result.append({
             "id": criterion_id,
             "name": name,
             "requirement": requirement,
-            "weight_bps": item["weight_bps"],
-            "mandatory": item["mandatory"],
+            "weight_bps": weight_bps,
+            "mandatory": mandatory,
         })
     require(total == WEIGHT_TOTAL, "criterion weights must total 10000")
     return result
@@ -187,22 +192,25 @@ def authentication_matches(refs: list, receipts: list) -> bool:
     return True
 
 
-def validate_evaluation(value: Any, criteria: list, locked_urls: list) -> dict:
+def validate_evaluation(value: Any, criteria: list[dict[str, Any]], locked_urls: list[str]) -> dict[str, Any]:
     require(type(value) is dict and set(value) == {"criteria", "summary"}, "invalid evaluation schema")
-    criteria_results = value["criteria"]
+    value = cast(dict[str, Any], value)
+    criteria_results = cast(list[Any], value["criteria"])
     require(type(criteria_results) is list and len(criteria_results) == len(criteria), "criterion result count")
     expected = {c["id"]: c for c in criteria}
-    seen = set()
-    normalized = []
-    for item in criteria_results:
+    seen: set[str] = set()
+    normalized: list[dict[str, Any]] = []
+    for raw_item in criteria_results:
+        item = cast(dict[str, Any], raw_item)
         require(type(item) is dict and set(item) == {"id", "status", "score_bps", "finding", "evidence_urls"}, "invalid criterion result")
-        criterion_id = item["id"]
+        criterion_id = cast(str, item["id"])
         require(criterion_id in expected and criterion_id not in seen, "criterion result id mismatch")
-        status = item["status"]
+        status = cast(str, item["status"])
         require(status in STATUS_BUCKETS, "invalid criterion status")
-        require(type(item["score_bps"]) is int and item["score_bps"] == SCORE_BUCKETS[status], "score does not match status bucket")
+        score_bps = cast(int, item["score_bps"])
+        require(type(item["score_bps"]) is int and score_bps == SCORE_BUCKETS[status], "score does not match status bucket")
         finding = validate_text(item["finding"], 1, 700, "invalid criterion finding")
-        evidence_urls = item["evidence_urls"]
+        evidence_urls = cast(list[str], item["evidence_urls"])
         require(type(evidence_urls) is list and len(evidence_urls) <= 4, "invalid criterion citations")
         require(len(set(evidence_urls)) == len(evidence_urls), "duplicate criterion citation")
         require(all(type(url) is str and url in locked_urls for url in evidence_urls), "citation is not locked evidence")
@@ -210,7 +218,7 @@ def validate_evaluation(value: Any, criteria: list, locked_urls: list) -> dict:
         normalized.append({
             "id": criterion_id,
             "status": status,
-            "score_bps": item["score_bps"],
+            "score_bps": score_bps,
             "finding": finding,
             "evidence_urls": list(evidence_urls),
         })
@@ -319,6 +327,14 @@ def evaluate_documents(
             return False
 
     return gl.vm.run_nondet_unsafe(fetch_and_judge, validator)
+
+
+@gl.evm.contract_interface
+class Recipient:
+    class View:
+        pass
+    class Write:
+        pass
 
 
 class TenderProof(gl.Contract):
