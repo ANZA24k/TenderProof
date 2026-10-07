@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "evidence" / "fixtures"
 EXPECTED = {
     "proposal-a.md": "Synthetic Proposal A",
-    "proposal-b.md": "Synthetic negative",
+    "proposal-b.md": "Synthetic Proposal B",
     "proposal-a-evidence.md": "Synthetic Proposal A",
     "proposal-b-evidence.md": "Synthetic Proposal B",
     "tender-spec.md": "Synthetic Tender",
