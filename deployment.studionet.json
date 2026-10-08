@@ -1,23 +1,41 @@
 {
-  "status": "not-deployed",
+  "status": "finalized",
   "network": "studionet",
   "chainId": 61999,
-  "contractAddress": null,
-  "deploymentTx": null,
-  "sourceCommit": null,
-  "sourceSha256": null,
-  "website": null,
-  "pilotTenderId": null,
-  "proposalIds": [],
+  "contractAddress": "0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3",
+  "deploymentTx": "0xa124b67c080961c46872ff112507b5e49bda522e6f151ebd63f25dd3cf333f2c",
+  "sourceCommit": "69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf",
+  "sourceSha256": "ec93824539d8f92b048ce0b62c2b7fe042ce5361f3090830668ba2f8a4d75c33",
+  "website": "https://tenderproof.ansaf1st34.chatgpt.site",
+  "pilotTenderId": 0,
+  "proposalIds": [
+    0
+  ],
   "transactions": {
-    "tenderCreation": null,
-    "commitments": [],
-    "reveals": [],
-    "evaluations": [],
+    "tenderCreation": "0x0f9363e7e5ee8e3de3fead4c253e52c4fb577a8ea3cff3665864339cd304cde0",
+    "commitments": [
+      "0xb86495360c12b1ebce78a5424325e6c97610bde65258e7c76e5120a5f525b5a1"
+    ],
+    "reveals": [
+      "0x9a012d11c1bc54f94e420cb95f3fe2a9fdf6ecf672e2869bc05900baa6444ea3"
+    ],
+    "evaluations": [
+      "0x54cd73c73d3e8fbea8a94a63fb68a88630f645623a8d2e27e8d624882ca75a1d"
+    ],
     "challenges": [],
-    "finalization": null,
+    "finalization": "0x30a77d59ed45a37fea8246266a8d89051a2647001af53a597c6d0d200c2f9128",
     "awardOrRefund": null
   },
-  "observedFinalState": null,
-  "notes": "Intentionally unpopulated until a genuine Studionet deployment and pilot are executed."
+  "observedFinalState": {
+    "status": "REFUNDED",
+    "finalized": true,
+    "winner": null,
+    "winningScoreBps": null,
+    "awardAmount": "0",
+    "awardStatus": "NONE",
+    "awardTransferEmitted": false,
+    "refundTransferEmitted": false,
+    "proposalStatus": "UNRESOLVED"
+  },
+  "notes": "Deployment and single-applicant zero-GEN pilot finalized in Studio Full Consensus mode. Reviewer output was rejected, all criteria were INCONCLUSIVE, and final state is REFUNDED with no winner. No funds were transferred; distinct-applicant, challenge/recheck, funded settlement and real MetaMask extension verification remain unexecuted."
 }

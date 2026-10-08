@@ -17,7 +17,7 @@
       set("[data-pilot]", record.pilotTenderId === null || record.pilotTenderId === undefined ? "Not run" : String(record.pilotTenderId));
       const message = by("[data-live-message]");
       if (record.status === "finalized" && record.contractAddress) {
-        message.textContent = "A finalized deployment record is configured. Live state readers can be added only with a verified public endpoint.";
+        message.textContent = "TenderProof deployment is finalized on Studionet. This page shows captured, verified receipts—not a continuous live state feed. Inspect the contract in the explorer for current state.";
         message.classList.add("is-live");
       } else {
         message.textContent = "No finalized deployment is configured. Synthetic fixtures below are clearly separate from live chain state.";
@@ -30,7 +30,10 @@
   fetch("pilot-record.json", { cache: "no-store" })
     .then((response) => response.json())
     .then((record) => {
-      const status = record.status === "finalized" ? "Finalized" : "Not run";
+      const status = record.status === "finalized" ? "Finalized — no eligible winner" : record.status === "in-progress" ? "Live pilot in progress" : "Not run";
+      set("[data-phase-commit]", record.proposals?.some(p => p.commitTransaction) ? "Finalized" : "Not run");
+      set("[data-phase-reveal]", record.proposals?.some(p => p.revealTransaction) ? "Finalized" : "Not run");
+      set("[data-phase-review]", record.evaluations?.length ? "Finalized · INCONCLUSIVE" : "Not run");
       set("[data-outcome]", record.winner ? "Winner recorded" : status);
     })
     .catch(() => set("[data-outcome]", "Not observed"));

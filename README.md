@@ -10,7 +10,7 @@ It separates deterministic procurement state from GenLayer consensus judgment:
 
 ## Verification status
 
-This repository records only observed values. The contract and public evidence site are implemented; deployment and the Studionet pilot remain **not populated until genuinely executed**.
+This repository records only observed values. The contract is deployed and finalized on Studionet. A genuine single-applicant, zero-GEN pilot has finalized creation, commitment, reveal, and evaluation transactions. Evaluation returned INCONCLUSIVE and failed closed; it is not a passing proposal or payout claim.
 
 | Item | Status |
 | --- | --- |
@@ -18,10 +18,10 @@ This repository records only observed values. The contract and public evidence s
 | Evidence site | [TenderProof on ChatGPT Sites](https://tenderproof.ansaf1st34.chatgpt.site) — published, owner-private |
 | Network | Studionet prototype |
 | Chain ID | 61999 |
-| Contract address | Not deployed |
-| Deployment transaction | Not observed |
-| Pilot tender | Not run |
-| Winner / award | Not observed |
+| Contract address | 0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3 |
+| Deployment transaction | 0xa124b67c080961c46872ff112507b5e49bda522e6f151ebd63f25dd3cf333f2c |
+| Pilot tender | 0 — genuine single-applicant, zero-GEN pilot |
+| Winner / award | No eligible winner; REFUNDED, zero award, no transfer |
 | CI | Runs from .github/workflows/check.yml |
 | Direct tests | python -m pytest -q |
 | Linter | genvm-lint check contracts/tenderproof.py |
@@ -79,4 +79,4 @@ Run `npm test` for the dependency-free wallet tests and `npm run build` to produ
 
 The wallet connection uses MetaMask's EIP-1193 provider and EIP-6963 discovery. It requests only the public account and chain ID. Studionet switching is user initiated. Account revocation, network changes, pending requests, rejection, and local disconnect are handled. No seed phrase, private key, message signature, or transaction is requested. Local disconnect does not revoke MetaMask's site permissions.
 
-Transactions are deliberately unavailable until a genuine finalized contract deployment is recorded. Passing mocked-provider tests does not mean a real user's MetaMask extension or on-chain settlement was tested.
+This reviewer website does not submit contract transactions. Use Studio for contract interactions against the recorded deployment. Passing mocked-provider tests does not mean a real user's MetaMask extension was tested. The live zero-value pilot proves fail-closed settlement, not a funded transfer or a passing semantic evaluation.
