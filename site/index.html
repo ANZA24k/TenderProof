@@ -22,6 +22,18 @@
   </header>
 
   <main id="top">
+    <section class="wallet-panel shell" aria-labelledby="wallet-title">
+      <div class="section-kicker">TenderProof workspace</div>
+      <h2 id="wallet-title">Connect your wallet</h2>
+      <div class="hero-actions">
+        <button class="button button-primary" data-connect>Connect MetaMask</button>
+        <button class="button button-quiet" data-switch hidden>Switch to Studionet</button>
+        <button class="button button-quiet" data-disconnect hidden>Disconnect locally</button>
+      </div>
+      <div class="wallet-details"><div><span class="label">Account</span><strong class="mono" data-wallet-account>Not connected</strong></div><div><span class="label">Wallet network</span><strong data-wallet-network>Not selected</strong></div></div>
+      <p class="status-message" data-wallet-status role="status" aria-live="polite">Connect only shares your public address. No seed phrase, signature, or payment is requested.</p>
+      <p class="muted">Contract transactions are not enabled: a finalized TenderProof deployment has not been verified. Use <a href="https://studio.genlayer.com/contracts" target="_blank" rel="noopener noreferrer">GenLayer Studio ↗</a> for deployment. Disconnect is local; revoke site permissions inside MetaMask if needed.</p>
+    </section>
     <section class="hero shell">
       <div class="eyebrow">GENLAYER INTELLIGENT CONTRACT · TENDERPROOF/1</div>
       <h1>Procurement evidence,<br><em>resolved by consensus.</em></h1>
@@ -154,5 +166,6 @@
     <span><a href="https://docs.genlayer.com/" rel="noreferrer">GenLayer docs ↗</a> · <a href="https://github.com/ANZA24k/TenderProof" rel="noreferrer">GitHub ↗</a></span>
   </footer>
   <script src="app.js"></script>
+  <script type="module" src="wallet-ui.js"></script>
 </body>
 </html>

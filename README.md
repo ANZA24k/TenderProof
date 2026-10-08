@@ -15,7 +15,7 @@ This repository records only observed values. The contract and public evidence s
 | Item | Status |
 | --- | --- |
 | GitHub source | [ANZA24k/TenderProof](https://github.com/ANZA24k/TenderProof) |
-| Public evidence site | Pending verified Pages deployment |
+| Evidence site | [TenderProof on ChatGPT Sites](https://tenderproof.ansaf1st34.chatgpt.site) — published, owner-private |
 | Network | Studionet prototype |
 | Chain ID | 61999 |
 | Contract address | Not deployed |
@@ -56,10 +56,10 @@ TenderProof is not encrypted sealed bidding. The commitment hides proposal conte
 - tests/test_tenderproof.py — direct-mode contract and security tests.
 - evidence/fixtures/ — synthetic tender and proposal documents.
 - evidence/ — deployment and pilot records; values are null until observed.
-- site/ — read-only reviewer evidence site.
+- site/ — reviewer evidence site with MetaMask connection and Studionet switching.
 - docs/ — architecture, specification, security, testing, deployment, pilot, verification, and submission notes.
 - scripts/ — fixture integrity and real-commit input helpers.
-- .github/workflows/ — contract CI and GitHub Pages publication.
+- .github/workflows/ — contract and wallet CI. Hosting uses ChatGPT Sites only.
 
 ## Local checks
 
@@ -72,3 +72,11 @@ Use Python 3.12+:
     python scripts/verify_fixtures.py
 
 See docs/DEPLOYMENT.md before using Studio. Never commit a private key, seed phrase, token, or fabricated receipt.
+
+## Website and wallet
+
+Run `npm test` for the dependency-free wallet tests and `npm run build` to produce `dist/`. Serve `dist/` over HTTP or HTTPS; module scripts cannot run from file:// URLs.
+
+The wallet connection uses MetaMask's EIP-1193 provider and EIP-6963 discovery. It requests only the public account and chain ID. Studionet switching is user initiated. Account revocation, network changes, pending requests, rejection, and local disconnect are handled. No seed phrase, private key, message signature, or transaction is requested. Local disconnect does not revoke MetaMask's site permissions.
+
+Transactions are deliberately unavailable until a genuine finalized contract deployment is recorded. Passing mocked-provider tests does not mean a real user's MetaMask extension or on-chain settlement was tested.
