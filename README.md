@@ -15,7 +15,7 @@ This repository records only observed values. The contract is deployed and final
 | Item | Status |
 | --- | --- |
 | GitHub source | [ANZA24k/TenderProof](https://github.com/ANZA24k/TenderProof) |
-| Evidence site | [TenderProof on ChatGPT Sites](https://tenderproof.ansaf1st34.chatgpt.site) — published, owner-private |
+| Evidence site | [TenderProof on Netlify](https://fanciful-blini-025faa.netlify.app/) — public, no login required |
 | Network | Studionet prototype |
 | Chain ID | 61999 |
 | Contract address | 0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3 |
@@ -59,7 +59,7 @@ TenderProof is not encrypted sealed bidding. The commitment hides proposal conte
 - site/ — reviewer evidence site with MetaMask connection and Studionet switching.
 - docs/ — architecture, specification, security, testing, deployment, pilot, verification, and submission notes.
 - scripts/ — fixture integrity and real-commit input helpers.
-- .github/workflows/ — contract and wallet CI. Hosting uses ChatGPT Sites only.
+- .github/workflows/ — contract and wallet CI. The public reviewer frontend is hosted on Netlify; netlify.toml records its build settings.
 
 ## Local checks
 
