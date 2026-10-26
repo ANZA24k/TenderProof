@@ -15,7 +15,7 @@ This repository records only observed values. The contract is deployed and final
 | Item | Status |
 | --- | --- |
 | GitHub source | [ANZA24k/TenderProof](https://github.com/ANZA24k/TenderProof) |
-| Evidence site | [TenderProof on Netlify](https://fanciful-blini-025faa.netlify.app/) — public, no login required |
+| Evidence site | [TenderProof on Netlify](https://tenderproof-anza24k.netlify.app/) — public, no login required |
 | Network | Studionet prototype |
 | Chain ID | 61999 |
 | Contract address | 0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3 |
@@ -79,4 +79,4 @@ Run `npm test` for the dependency-free wallet tests and `npm run build` to produ
 
 The wallet connection uses MetaMask's EIP-1193 provider and EIP-6963 discovery. It requests only the public account and chain ID. Studionet switching is user initiated. Account revocation, network changes, pending requests, rejection, and local disconnect are handled. No seed phrase, private key, message signature, or transaction is requested. Local disconnect does not revoke MetaMask's site permissions.
 
-This reviewer website does not submit contract transactions. Use Studio for contract interactions against the recorded deployment. Passing mocked-provider tests does not mean a real user's MetaMask extension was tested. The live zero-value pilot proves fail-closed settlement, not a funded transfer or a passing semantic evaluation.
+The contract workspace reads finalized state and supports zero-GEN create, commit, reveal, evaluate, challenge, advance and finalize calls through MetaMask using genlayer-js 1.1.8. Calls require explicit review, then wallet approval. Transaction hashes persist for resumable tracking; finality and execution success are checked separately. This update is not yet verified in the production browser or with a real MetaMask extension. Passing mocked-provider tests does not mean a real user's MetaMask extension was tested. The live zero-value pilot proves fail-closed settlement, not a funded transfer or a passing semantic evaluation.

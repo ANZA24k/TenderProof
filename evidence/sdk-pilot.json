@@ -1,0 +1,26 @@
+{
+  "account": "0x09A42849A4578916892430F8940bf594E6833455",
+  "contract": "0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3",
+  "transactions": [
+    {
+      "functionName": "create_tender",
+      "hash": "0x7926a819f91eda53f41d7dd90f7161ceb5e14ae57b18c84bf6dc813b3f4d28d4",
+      "status": "FINALIZED",
+      "execution": [
+        "return",
+        "contract_error"
+      ]
+    },
+    {
+      "functionName": "commit_proposal",
+      "hash": "0xe63450ad5451d603ee82783a3d28b267994879686f9c7c4bf42f74ebd13e8906",
+      "status": "FINALIZED",
+      "execution": [
+        "return",
+        "contract_error"
+      ]
+    }
+  ],
+  "tenderId": 2,
+  "notes": "Zero-GEN SDK integration attempt. Interrupted by an RPC response containing HTML instead of JSON; no successful semantic evaluation or settlement is claimed. Signing account was ephemeral; this attempt cannot reveal the committed proposal after process loss. Receipt execution array preserves leader and validator results in order; it must not be interpreted as a single verdict."
+}

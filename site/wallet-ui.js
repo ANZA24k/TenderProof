@@ -22,6 +22,7 @@ function render(state) {
   status.textContent = state.ready ? 'Wallet connected to Studionet. No signature or transaction requested.' : state.connected ? 'Switch to Studionet to use this project. This is a test network.' : 'Connect only shares your public address. No seed phrase, signature, or payment is requested.';
 }
 let session = new WalletSession(provider, render);
+window.tenderproofWallet = { provider: () => session.state.ready ? provider : null };
 window.dispatchEvent(new Event('eip6963:requestProvider'));
 async function run(action) {
   connect.disabled = switchButton.disabled = true;

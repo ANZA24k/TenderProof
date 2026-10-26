@@ -22,6 +22,26 @@
   </header>
 
   <main id="top">
+    <section class="wallet-panel shell" aria-labelledby="contract-title">
+      <div class="section-kicker">LIVE CONTRACT WORKSPACE · STUDIONET ONLY</div>
+      <h2 id="contract-title">Create, submit, and track a tender</h2>
+      <p>Read finalized state without a wallet. For writes, connect MetaMask below and review each call before signing. This pilot accepts zero-GEN awards only. Deadlines are Unix seconds; each phase must be at least 30 seconds. Create a tender, commit its exact proposal SHA-256 before the commit deadline, reveal its immutable URL during reveal, evaluate during review, then finalize after review closes.</p>
+      <label>Tender ID <input data-tender-id type="number" min="0" value="0"></label>
+      <button data-refresh type="button" class="button">Refresh finalized state</button>
+      <pre data-chain-output aria-live="polite" style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto"></pre>
+      <form data-call-form>
+        <label>Contract action <select data-call-method name="method"></select></label>
+        <button data-example type="button" class="button">Fill synthetic example</button>
+        <div data-call-fields></div>
+        <label><input data-confirm-write type="checkbox"> I reviewed these arguments and authorize this zero-value Studionet call.</label>
+        <button type="submit" class="button button-primary">Review and sign testnet call</button>
+      </form>
+      <p data-tx-status role="status" aria-live="polite">No transaction submitted.</p>
+      <a data-tx-link hidden target="_blank" rel="noopener noreferrer"></a>
+      <label>Transaction hash <input data-track-hash placeholder="0x…"></label>
+      <button data-resume type="button" class="button">Resume tracking</button>
+      <button data-forget type="button" class="button">Clear saved tracking lock</button>
+    </section>
     <section class="wallet-panel shell" aria-labelledby="wallet-title">
       <div class="section-kicker">TenderProof workspace</div>
       <h2 id="wallet-title">Connect your wallet</h2>
@@ -32,7 +52,7 @@
       </div>
       <div class="wallet-details"><div><span class="label">Account</span><strong class="mono" data-wallet-account>Not connected</strong></div><div><span class="label">Wallet network</span><strong data-wallet-network>Not selected</strong></div></div>
       <p class="status-message" data-wallet-status role="status" aria-live="polite">Connect only shares your public address. No seed phrase, signature, or payment is requested.</p>
-      <p class="muted">TenderProof is deployed on Studionet. <a href="https://explorer-studio.genlayer.com/address/0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3" target="_blank" rel="noopener noreferrer">Inspect the verified contract</a>. This reviewer website connects your wallet but does not submit contract transactions; use <a href="https://studio.genlayer.com/run-debug" target="_blank" rel="noopener noreferrer">GenLayer Studio</a> for contract calls. Disconnect is local; revoke site permissions inside MetaMask if needed.</p>
+      <p class="muted">TenderProof is deployed on Studionet. <a href="https://explorer-studio.genlayer.com/address/0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3" target="_blank" rel="noopener noreferrer">Inspect the contract</a>. Connect shares your public address only. The separate contract workspace requests signing only after you review and confirm a call. Disconnect is local; revoke permissions inside MetaMask if needed.</p>
     </section>
     <section class="hero shell">
       <div class="eyebrow">GENLAYER INTELLIGENT CONTRACT · TENDERPROOF/1</div>
@@ -167,5 +187,6 @@
   </footer>
   <script src="app.js"></script>
   <script type="module" src="wallet-ui.js"></script>
+  <script type="module" src="contract-ui.js"></script>
 </body>
 </html>

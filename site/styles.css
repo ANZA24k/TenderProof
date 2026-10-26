@@ -163,3 +163,9 @@ button:disabled { opacity: .55; cursor: wait; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 3px solid #e8b75a; outline-offset: 5px; }
 @media (max-width: 680px) { .wallet-details { grid-template-columns: 1fr; } .wallet-panel { padding: 20px; } }
+/* Contract workspace */
+[data-call-form] label {display:block;margin:16px 0;color:var(--text,#eee)}
+[data-call-form] textarea,[data-call-form] input:not([type=checkbox]),[data-call-form] select,[data-tender-id],[data-track-hash] {display:block;width:100%;padding:12px;background:#101214;color:#eee;border:1px solid #555;border-radius:6px;margin-top:8px;font:inherit}
+[data-call-form] textarea {min-height:80px}
+[data-call-form] input[type=checkbox] {margin-right:8px}
+[data-tx-link] {overflow-wrap:anywhere}

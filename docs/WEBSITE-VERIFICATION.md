@@ -1,6 +1,6 @@
 # Website verification — public hosting update 2026-10-21
 
-- Public reviewer URL: https://fanciful-blini-025faa.netlify.app/
+- Public reviewer URL: https://tenderproof-anza24k.netlify.app/
 - Netlify project: `d0585286-e187-46c0-bd6c-0cf48329d136`; published deployment: `6ad86edd9b36b329264c3f2f`.
 - Uploaded the static production build and explicitly made this project public. Other projects and team defaults were not changed.
 - An independent HTTP request without authentication returned 200. Browser verification rendered the frontend, wallet controls, deployment address, and recorded pilot outcome without a sign-in page.
@@ -18,3 +18,7 @@
 - Old GitHub Pages publication was removed. The original hosting used ChatGPT Sites; the current public reviewer deployment uses Netlify.
 
 Remaining verification: passing real semantic review, distinct applicants, challenge/recheck, funded award settlement, and real MetaMask extension interaction. The reviewer website connects the wallet but does not send contract transactions. Deployment and a zero-value fail-closed pilot are not proof that these remaining flows work.
+
+## Frontend completion work — 2026-10-26
+
+The repository now includes SDK-backed finalized reads and zero-GEN wallet writes for all tender operations, confirmation, persistent transaction hashes and resumable receipt tracking. Thirteen JavaScript checks and a bundled build passed. The live SDK attempt finalized creation and commitment but stopped on an RPC HTML response before reveal; evidence/sdk-pilot.json records this limitation. This new frontend has not yet been published or browser-verified because the Netlify dashboard session expired. Do not describe the project as submission-ready until deployment and end-to-end verification finish. The 2026-10-08 contract remains unchanged.
