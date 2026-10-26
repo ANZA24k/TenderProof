@@ -10,10 +10,12 @@ const read=async(name,args=[])=>{
   const result=await client.readContract({address:ADDRESS,functionName:name,args,transactionHashVariant:TransactionHashVariant.LATEST_FINAL});
   return typeof result==='string'?JSON.parse(result):result;
 };
+let readGeneration=0;
 async function refresh(){
+  const generation=++readGeneration;
   output.textContent='Loading finalized state…';
-  try { const id=BigInt($('[data-tender-id]').value||0); const [count,tender]=await Promise.all([read('get_tender_count'),read('get_tender',[id])]); output.textContent=stringify({count,tender}); }
-  catch(e){output.textContent='Live read failed. No cached data is substituted. '+e.message;}
+  try { const id=BigInt($('[data-tender-id]').value||0); const [count,tender]=await Promise.all([read('get_tender_count'),read('get_tender',[id])]); if(generation===readGeneration)output.textContent=stringify({count,tender}); }
+  catch(e){if(generation===readGeneration)output.textContent='Live read failed. No cached data is substituted. '+e.message;}
 }
 $('[data-refresh]').addEventListener('click',refresh);
 const menu=$('[data-call-method]');
@@ -26,7 +28,7 @@ $('[data-example]').addEventListener('click',()=>{
   for(const input of form.querySelectorAll('[name]'))if(input.name in values)input.value=values[input.name];
 });
 let busy=false;
-async function track(hash){
+async function track(hash,method){
   if(!/^0x[a-fA-F0-9]{64}$/.test(hash)) throw new Error('Invalid transaction hash');
   const link=$('[data-tx-link]');link.href=`https://explorer-studio.genlayer.com/tx/${hash}`;link.textContent=hash;link.hidden=false;
   status.textContent='Tracking consensus. A timeout does not mean the write failed.';
@@ -36,7 +38,10 @@ async function track(hash){
     if(receipt.statusName==='FINALIZED'){
       output.textContent=stringify(receipt);
       if(!successful(receipt))throw new Error('Finalized transaction did not return successfully. Inspect its receipt.');
-      status.textContent='Finalized execution succeeded. Read the tender to inspect the actual verdict; success does not imply PASS.';await refresh();return;
+      const leader=receipt.consensus_data?.leader_receipt?.find(r=>r.mode==='leader'&&r.result?.status==='return');
+      const result=leader?.result?.payload?.readable;
+      if(method==='create_tender'&&typeof result==='string'&&/^\d+$/.test(result))$('[data-tender-id]').value=result;
+      status.textContent=`Finalized execution succeeded${result!==undefined?`; return: ${String(result).slice(0,400)}`:''}. Read the tender to inspect the actual verdict; success does not imply PASS.`;await refresh();return;
     }
     if(['CANCELED','UNDETERMINED'].includes(receipt.statusName))throw new Error(`Transaction ${receipt.statusName}; inspect receipt before retrying.`);
     await new Promise(resolve=>setTimeout(resolve,3000));
@@ -57,9 +62,9 @@ form.addEventListener('submit',async event=>{
     if(!window.confirm(`Submit ${method} to TenderProof on Studionet?\nContract: ${ADDRESS}\nAccount: ${accounts[0]}\nValue: 0 GEN\nArguments:\n${stringify(args)}`))return;
     const writer=createClient({chain:studionet,account:accounts[0],provider});status.textContent='Waiting for wallet approval…';
     const hash=await writer.writeContract({address:ADDRESS,functionName:method,args,value:0n,leaderOnly:false});
-    localStorage.setItem('tenderproof-pending',hash);await track(hash);localStorage.removeItem('tenderproof-pending');
+    localStorage.setItem('tenderproof-pending',hash);localStorage.setItem('tenderproof-pending-method',method);await track(hash,method);localStorage.removeItem('tenderproof-pending');localStorage.removeItem('tenderproof-pending-method');
   }catch(e){report(e);}finally{busy=false;button.disabled=false;}
 });
-$('[data-resume]').addEventListener('click',async()=>{if(busy)return;busy=true;try{const hash=localStorage.getItem('tenderproof-pending')||$('[data-track-hash]').value.trim();await track(hash);localStorage.removeItem('tenderproof-pending');}catch(e){report(e);}finally{busy=false;}});
+$('[data-resume]').addEventListener('click',async()=>{if(busy)return;busy=true;try{const hash=localStorage.getItem('tenderproof-pending')||$('[data-track-hash]').value.trim();await track(hash,localStorage.getItem('tenderproof-pending-method'));localStorage.removeItem('tenderproof-pending');localStorage.removeItem('tenderproof-pending-method');}catch(e){report(e);}finally{busy=false;}});
 $('[data-forget]').addEventListener('click',()=>{if(!busy&&window.confirm('Stop blocking new writes? This does not cancel the saved transaction. Check Explorer first to avoid duplicates.'))localStorage.removeItem('tenderproof-pending');});
 refresh();

@@ -292,6 +292,9 @@ def evaluate_documents(
             "permit a responsible determination. Use exactly one result for every criterion. Score buckets are fixed: "
             "PASS=10000, PARTIAL=5000, FAIL=0, INCONCLUSIVE=0. Return ONLY JSON with keys criteria and summary. "
             "Each criterion item must contain id, status, score_bps, finding, and evidence_urls. "
+            "Use no extra keys. id and status are strings; score_bps must be an integer, never a string or decimal. "
+            "Each finding must be 1 to 700 characters, summary 1 to 1000 characters. "
+            "evidence_urls must be an array of at most four distinct exact supplied URL strings. "
             "Cite only URLs from the supplied locked documents. "
             + canonical({
                 "tender": {
@@ -307,8 +310,8 @@ def evaluate_documents(
             raw = gl.nondet.exec_prompt(prompt, response_format="json")
             normalized = validate_evaluation(raw, criteria, locked_urls)
             return {"ok": True, "evaluation": normalized}
-        except Exception:
-            return {"ok": False, "error": "reviewer returned an invalid or unsafe result"}
+        except Exception as error:
+            return {"ok": False, "error": "reviewer rejected: " + str(error)[:180]}
 
     def validator(leader_result) -> bool:
         if not isinstance(leader_result, gl.vm.Return):
@@ -629,6 +632,8 @@ class TenderProof(gl.Contract):
             "evaluation": evaluation,
             "evidence_urls": [proposal["url"]] + [item["url"] for item in proposal["evidence"] + extra_evidence],
         }
+        if type(result) is dict and result.get("ok") is not True:
+            decision["review_error"] = str(result.get("error", "review unavailable"))[:220]
         decision["decision_hash"] = digest_text(canonical(decision))
         proposal["evaluations"].append(decision)
         proposal["status"] = status

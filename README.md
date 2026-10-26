@@ -10,7 +10,7 @@ It separates deterministic procurement state from GenLayer consensus judgment:
 
 ## Verification status
 
-This repository records only observed values. The contract is deployed and finalized on Studionet. A genuine single-applicant, zero-GEN pilot has finalized creation, commitment, reveal, and evaluation transactions. Evaluation returned INCONCLUSIVE and failed closed; it is not a passing proposal or payout claim.
+This repository records only observed values. The contract is deployed and finalized on Studionet. The original five-criterion zero-GEN pilot returned INCONCLUSIVE and remains preserved as historical evidence. The current deployment has finalized a real PASS review of a synthetic accessibility plan, scoring 10000 bps. All five writes finalized; tender 0 is AWARDED with winner 0x51292144203eCb173cbb89c20F0BD6975c29ff5C and zero GEN transferred. See evidence/diagnostic-pilot.json.
 
 | Item | Status |
 | --- | --- |
@@ -18,10 +18,10 @@ This repository records only observed values. The contract is deployed and final
 | Evidence site | [TenderProof on Netlify](https://tenderproof-anza24k.netlify.app/) — public, no login required |
 | Network | Studionet prototype |
 | Chain ID | 61999 |
-| Contract address | 0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3 |
-| Deployment transaction | 0xa124b67c080961c46872ff112507b5e49bda522e6f151ebd63f25dd3cf333f2c |
+| Contract address | 0xd4861ebFc42D7bd813999FF23a831Cda6c4dcFB0 |
+| Deployment transaction | 0xebde7e985722a7d7bec30a99b6d48206ebe45b6fb20d4c2f089a8579009d10e3 |
 | Pilot tender | 0 — genuine single-applicant, zero-GEN pilot |
-| Winner / award | No eligible winner; REFUNDED, zero award, no transfer |
+| Winner / award | AWARDED, score 10000 bps, zero GEN; no transfer |
 | CI | Runs from .github/workflows/check.yml |
 | Direct tests | python -m pytest -q |
 | Linter | genvm-lint check contracts/tenderproof.py |
@@ -79,4 +79,4 @@ Run `npm test` for the dependency-free wallet tests and `npm run build` to produ
 
 The wallet connection uses MetaMask's EIP-1193 provider and EIP-6963 discovery. It requests only the public account and chain ID. Studionet switching is user initiated. Account revocation, network changes, pending requests, rejection, and local disconnect are handled. No seed phrase, private key, message signature, or transaction is requested. Local disconnect does not revoke MetaMask's site permissions.
 
-The contract workspace reads finalized state and supports zero-GEN create, commit, reveal, evaluate, challenge, advance and finalize calls through MetaMask using genlayer-js 1.1.8. Calls require explicit review, then wallet approval. Transaction hashes persist for resumable tracking; finality and execution success are checked separately. This update is not yet verified in the production browser or with a real MetaMask extension. Passing mocked-provider tests does not mean a real user's MetaMask extension was tested. The live zero-value pilot proves fail-closed settlement, not a funded transfer or a passing semantic evaluation.
+The contract workspace reads finalized state and supports zero-GEN create, commit, reveal, evaluate, challenge, advance and finalize calls through MetaMask using genlayer-js 1.1.8. Calls require explicit review, then wallet approval. Transaction hashes persist for resumable tracking; finality and execution success are checked separately. The production browser verified finalized reads, synthetic input preparation, missing-wallet handling and finalized receipt tracking. A real MetaMask extension signing flow remains unverified. Passing mocked-provider tests does not mean a real user's MetaMask extension was tested. The current zero-value pilot proves PASS evaluation and finalized winner selection, not a funded transfer. Historical inconclusive runs remain documented.

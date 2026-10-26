@@ -1,0 +1,162 @@
+{
+  "account": "0x3A55BE3C270C910B11aDA3C167B068DeA81A9169",
+  "contract": "0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3",
+  "transactions": [
+    {
+      "functionName": "create_tender",
+      "hash": "0x34d120a937b3156693a3280925262c333395cf9f7b02fd085dd0f8c8ade7d8d6",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "commit_proposal",
+      "hash": "0x53f39451cd7579c609fe5a609832c12420b2794329eeaf17f8bb420f8c2d0f0e",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "reveal_proposal",
+      "hash": "0x45456f2c1a966c320c683a075348bab67aa0e2927f9e07ebe14c34dab8978923",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "evaluate_proposal",
+      "hash": "0x2b62560c28019df22e22f87ab895cbf83c821740c0cd0ec018ae1e3e0d88fe7f",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "finalize_tender",
+      "hash": "0x7bc0c27e25b81ce3421bfde70bc1ae1b4e41ac5ffdbae3d94c50d5c4b7e46913",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    }
+  ],
+  "tenderId": 3,
+  "proposal": {
+    "applicant": "0x3A55BE3C270C910B11aDA3C167B068DeA81A9169",
+    "applicant_challenges": 0,
+    "applicant_label": "Synthetic SDK applicant",
+    "challenges": [],
+    "commitment_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+    "decision_hash": "1b753b967d0c1b02ec370e7f874786b577f90320ccf84adb65f14000f5901747",
+    "eligible": false,
+    "evaluations": [
+      {
+        "decision_hash": "1b753b967d0c1b02ec370e7f874786b577f90320ccf84adb65f14000f5901747",
+        "eligible": false,
+        "evaluation": {
+          "criteria": [
+            {
+              "evidence_urls": [],
+              "finding": "Consensus could not authenticate or evaluate the locked proposal.",
+              "id": "C1",
+              "score_bps": 0,
+              "status": "INCONCLUSIVE"
+            }
+          ],
+          "summary": "Consensus could not authenticate or evaluate the locked proposal."
+        },
+        "evidence_urls": [
+          "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+        ],
+        "revision": 0,
+        "score_bps": 0,
+        "status": "UNRESOLVED",
+        "timestamp": 1792991820
+      }
+    ],
+    "evidence": [],
+    "pending_challenge_index": null,
+    "proposal_id": 0,
+    "proposal_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+    "score_bps": 0,
+    "sponsor_challenges": 0,
+    "status": "UNRESOLVED",
+    "url": "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+  },
+  "finalState": {
+    "award_amount": 0,
+    "award_status": "NONE",
+    "award_transfer_emitted": false,
+    "commit_deadline": 1792991720,
+    "commitment_scheme": "lowercase sha256(exact proposal UTF-8 bytes)",
+    "criteria": [
+      {
+        "id": "C1",
+        "mandatory": true,
+        "name": "Accessibility plan",
+        "requirement": "The submitted proposal describes semantic HTML, keyboard navigation and visible focus states. Assess the documented plan, not deployed implementation.",
+        "weight_bps": 10000
+      }
+    ],
+    "finalized": true,
+    "policy": "TenderProof/1",
+    "proposals": [
+      {
+        "applicant": "0x3A55BE3C270C910B11aDA3C167B068DeA81A9169",
+        "applicant_challenges": 0,
+        "applicant_label": "Synthetic SDK applicant",
+        "challenges": [],
+        "commitment_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+        "decision_hash": "1b753b967d0c1b02ec370e7f874786b577f90320ccf84adb65f14000f5901747",
+        "eligible": false,
+        "evaluations": [
+          {
+            "decision_hash": "1b753b967d0c1b02ec370e7f874786b577f90320ccf84adb65f14000f5901747",
+            "eligible": false,
+            "evaluation": {
+              "criteria": [
+                {
+                  "evidence_urls": [],
+                  "finding": "Consensus could not authenticate or evaluate the locked proposal.",
+                  "id": "C1",
+                  "score_bps": 0,
+                  "status": "INCONCLUSIVE"
+                }
+              ],
+              "summary": "Consensus could not authenticate or evaluate the locked proposal."
+            },
+            "evidence_urls": [
+              "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+            ],
+            "revision": 0,
+            "score_bps": 0,
+            "status": "UNRESOLVED",
+            "timestamp": 1792991820
+          }
+        ],
+        "evidence": [],
+        "pending_challenge_index": null,
+        "proposal_id": 0,
+        "proposal_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+        "score_bps": 0,
+        "sponsor_challenges": 0,
+        "status": "UNRESOLVED",
+        "url": "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+      }
+    ],
+    "refund_transfer_emitted": false,
+    "reveal_deadline": 1792991810,
+    "review_deadline": 1792991990,
+    "specification": "Assess the submitted written plan only. This is not proof of a real implementation.",
+    "specification_sha256": "fcaf50cf97e1fe5bc7d560a4b23c329e49dd6016532c627b8920d9bc15262a54",
+    "sponsor": "0x3A55BE3C270C910B11aDA3C167B068DeA81A9169",
+    "status": "REFUNDED",
+    "tender_id": 3,
+    "title": "Synthetic accessibility plan review",
+    "winner": null,
+    "winning_score_bps": null
+  }
+}

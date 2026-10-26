@@ -194,6 +194,20 @@ def test_prompt_injection_is_treated_as_proposal_data(env):
     assert proposal_state(env, tender_id, proposal_id)["score_bps"] == 10000
 
 
+def test_rejected_reviewer_records_bounded_diagnostic(env):
+    tender_id, proposal_id = enter_reveal(env)
+    reveal(env, tender_id, proposal_id)
+    vm, contract, _, _, _ = env
+    vm.warp(datetime.fromtimestamp(NOW + 121, timezone.utc).isoformat())
+    vm.mock_llm(r".*You are an independent evaluator for the locked TenderProof/1 rubric.*",
+                json.dumps({"criteria": [], "summary": "Incomplete response"}))
+    result = json.loads(contract.evaluate_proposal(tender_id, proposal_id))
+    assert result["status"] == "UNRESOLVED"
+    assert result["eligible"] is False
+    assert "criterion result count" in result["review_error"]
+    assert len(result["review_error"]) <= 220
+
+
 def test_independent_validator_rejects_material_disagreement(env):
     tender_id, proposal_id = enter_reveal(env)
     reveal(env, tender_id, proposal_id)

@@ -1,0 +1,167 @@
+{
+  "account": "0x51292144203eCb173cbb89c20F0BD6975c29ff5C",
+  "contract": "0xd4861ebFc42D7bd813999FF23a831Cda6c4dcFB0",
+  "transactions": [
+    {
+      "functionName": "create_tender",
+      "hash": "0xb86dd8e12a709d83620d9a0b1b3e7c99a3d780f048e4a16dadf7712a2a35ea1a",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "commit_proposal",
+      "hash": "0x2da485cb956ca4bf54b400706d83922c2c5b277f886a37cc1aa0fcc4d3ac24c1",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "reveal_proposal",
+      "hash": "0x3ab3aa85dc20adfc067add82797728cd4d62739bb224560cdc1c7c71f965bf16",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "evaluate_proposal",
+      "hash": "0xec083ed5f25f564bb2bdf39972d0b80d0d233f8bc5692f4bb6ee9745c11a235a",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    },
+    {
+      "functionName": "finalize_tender",
+      "hash": "0x5ed8d37cb54aa7b8af83863bf4f778b89772330194a8b043c1db4780f6c35107",
+      "status": "FINALIZED",
+      "execution": [
+        "return"
+      ]
+    }
+  ],
+  "tenderId": 0,
+  "proposal": {
+    "applicant": "0x51292144203eCb173cbb89c20F0BD6975c29ff5C",
+    "applicant_challenges": 0,
+    "applicant_label": "Synthetic SDK applicant",
+    "challenges": [],
+    "commitment_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+    "decision_hash": "69fd3708208e11a3d98490bc05d26aaaa22549963a86c022d888f67ffd73c99e",
+    "eligible": true,
+    "evaluations": [
+      {
+        "decision_hash": "69fd3708208e11a3d98490bc05d26aaaa22549963a86c022d888f67ffd73c99e",
+        "eligible": true,
+        "evaluation": {
+          "criteria": [
+            {
+              "evidence_urls": [
+                "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+              ],
+              "finding": "The proposal explicitly describes the use of semantic headings and landmarks (semantic HTML), keyboard-operable filters and a manual keyboard checklist (keyboard navigation), and visible focus states.",
+              "id": "C1",
+              "score_bps": 10000,
+              "status": "PASS"
+            }
+          ],
+          "summary": "The proposal successfully meets the accessibility plan requirement by detailing the use of semantic HTML, keyboard navigation strategies, and the implementation of visible focus states."
+        },
+        "evidence_urls": [
+          "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+        ],
+        "revision": 0,
+        "score_bps": 10000,
+        "status": "EVALUATED",
+        "timestamp": 1792992245
+      }
+    ],
+    "evidence": [],
+    "pending_challenge_index": null,
+    "proposal_id": 0,
+    "proposal_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+    "score_bps": 10000,
+    "sponsor_challenges": 0,
+    "status": "EVALUATED",
+    "url": "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+  },
+  "finalState": {
+    "award_amount": 0,
+    "award_status": "NONE",
+    "award_transfer_emitted": false,
+    "commit_deadline": 1792992146,
+    "commitment_scheme": "lowercase sha256(exact proposal UTF-8 bytes)",
+    "criteria": [
+      {
+        "id": "C1",
+        "mandatory": true,
+        "name": "Accessibility plan",
+        "requirement": "The submitted proposal describes semantic HTML, keyboard navigation and visible focus states. Assess the documented plan, not deployed implementation.",
+        "weight_bps": 10000
+      }
+    ],
+    "finalized": true,
+    "policy": "TenderProof/1",
+    "proposals": [
+      {
+        "applicant": "0x51292144203eCb173cbb89c20F0BD6975c29ff5C",
+        "applicant_challenges": 0,
+        "applicant_label": "Synthetic SDK applicant",
+        "challenges": [],
+        "commitment_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+        "decision_hash": "69fd3708208e11a3d98490bc05d26aaaa22549963a86c022d888f67ffd73c99e",
+        "eligible": true,
+        "evaluations": [
+          {
+            "decision_hash": "69fd3708208e11a3d98490bc05d26aaaa22549963a86c022d888f67ffd73c99e",
+            "eligible": true,
+            "evaluation": {
+              "criteria": [
+                {
+                  "evidence_urls": [
+                    "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+                  ],
+                  "finding": "The proposal explicitly describes the use of semantic headings and landmarks (semantic HTML), keyboard-operable filters and a manual keyboard checklist (keyboard navigation), and visible focus states.",
+                  "id": "C1",
+                  "score_bps": 10000,
+                  "status": "PASS"
+                }
+              ],
+              "summary": "The proposal successfully meets the accessibility plan requirement by detailing the use of semantic HTML, keyboard navigation strategies, and the implementation of visible focus states."
+            },
+            "evidence_urls": [
+              "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+            ],
+            "revision": 0,
+            "score_bps": 10000,
+            "status": "EVALUATED",
+            "timestamp": 1792992245
+          }
+        ],
+        "evidence": [],
+        "pending_challenge_index": null,
+        "proposal_id": 0,
+        "proposal_sha256": "7ff3f295216813b5a4f76d07c30cc5e15ceb1cc43c93a4a3debcb21346525e33",
+        "score_bps": 10000,
+        "sponsor_challenges": 0,
+        "status": "EVALUATED",
+        "url": "https://raw.githubusercontent.com/ANZA24k/TenderProof/69acfc0b02947ba384bf5aebd3dd10ddaa4aa1cf/evidence/fixtures/proposal-a.md"
+      }
+    ],
+    "refund_transfer_emitted": false,
+    "reveal_deadline": 1792992236,
+    "review_deadline": 1792992356,
+    "specification": "Assess the submitted written plan only. This is not proof of a real implementation.",
+    "specification_sha256": "fcaf50cf97e1fe5bc7d560a4b23c329e49dd6016532c627b8920d9bc15262a54",
+    "sponsor": "0x51292144203eCb173cbb89c20F0BD6975c29ff5C",
+    "status": "AWARDED",
+    "tender_id": 0,
+    "title": "Synthetic accessibility plan review",
+    "winner": "0x51292144203eCb173cbb89c20F0BD6975c29ff5C",
+    "winning_score_bps": 10000
+  },
+  "notes": "Completed single-account, one-criterion synthetic zero-GEN SDK pilot. All five writes finalized with leader return. PASS and AWARDED establish documented-plan evaluation and zero-value winner selection, not funded payout or real-world implementation quality. Real MetaMask extension signing and cross-account challenge/recheck are not verified by this pilot."
+}

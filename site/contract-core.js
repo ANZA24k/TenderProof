@@ -1,4 +1,4 @@
-export const ADDRESS = '0xfCe8679513b27B9Cb730bD3C2EAbC763A97634C3';
+export const ADDRESS = '0xd4861ebFc42D7bd813999FF23a831Cda6c4dcFB0';
 export const methods = {
   create_tender: ['title','specification','commit_deadline:int','reveal_deadline:int','review_deadline:int','criteria_json','award_amount:int'],
   commit_proposal: ['tender_id:int','commitment_sha256','applicant_label'],

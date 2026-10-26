@@ -1,0 +1,9 @@
+{
+  "deploymentTx": "0xebde7e985722a7d7bec30a99b6d48206ebe45b6fb20d4c2f089a8579009d10e3",
+  "sourceSha256": "208cde95b97d23e9f0cd9094845bf2775288eaff5ea43c1bdf135ed2ef9347d8",
+  "status": "FINALIZED",
+  "address": "0xd4861ebFc42D7bd813999FF23a831Cda6c4dcFB0",
+  "execution": [
+    "return"
+  ]
+}
